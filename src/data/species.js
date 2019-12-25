@@ -1,0 +1,1 @@
+export const Species = ["Human","Mytholog","Other Species"];

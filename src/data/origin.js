@@ -1,0 +1,1 @@
+export const Origin = ["Unknown","Earth (C-137)"];
