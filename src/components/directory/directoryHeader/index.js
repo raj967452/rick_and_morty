@@ -7,7 +7,7 @@ const DirectoryHeader = (props) => {
     return (
         <React.Fragment>
             <div className="directory-container-header">
-                <div class="d-flex flex-row justify-content-between">
+                <div className="d-flex flex-row justify-content-between">
                     <div className="mt-2">{props.charactersLength} Charater(s) found.</div>
                     <Sort />
                 </div>

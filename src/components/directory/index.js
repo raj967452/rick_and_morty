@@ -56,10 +56,10 @@ class Directory extends Component {
             <React.Fragment>
                 {this.state.loading && <Loader />}
                 <div className="row directory-container">
-                    <div className="col-3 col-xs-12">
+                    <div className="col-sm-4 col-md-3 col-xs-12">
                         <Filters />
                     </div>
-                    <div className="col-9 col-xs-12">
+                    <div className="col-sm-8 col-md-9 col-xs-12">
                         <DirectoryHeader charactersLength={characters.length} />
                         <div class="clearfix"></div>
                         <div className="row">
