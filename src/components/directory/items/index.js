@@ -5,7 +5,7 @@ const Items = props => {
     const character = props.character;
     return (
         <React.Fragment>
-            <div className="col-xs-12 col-lg-3 col-sm-6 mt-4">
+            <div className="col-xs-12 col-lg-4 col-sm-6 mt-4">
                 <div className="card">
                     <div className="card_header">
                         <img src={character.image} className="card-img-top" alt={character.name} />
