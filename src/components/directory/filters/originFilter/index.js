@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
-import { updateFilters } from '../../../../services/filters/actions';
+import { updateFilters } from '../../../../services/store/filters/actions';
 import Checkbox from '../../../checkbox';
 
 const Gender = ["Male", "Female", "unknown"];

@@ -1,8 +1,25 @@
-import axios from '../apiCallHelper';
+//import characterApi from '../../api/charactersApi';
+//import axios from '../api/apiCallHelper';
 
 export const FETCH_CHARACTER = 'FETCH_CHARACTER';
+export const FETCH_CHARACTER_PENDING = 'FETCH_CHARACTER_PENDING';
+export const FETCH_CHARACTER_ERROR = 'FETCH_CHARACTER_ERROR';
 
-export const fetchCharacter = (filters, sortBy, callback) => async dispatch => {
+export const fetchChatactersPending = () => ({
+    type: FETCH_CHARACTER_PENDING
+})
+
+export const fetchChatactersSuccess = (chatacters) => ({
+    type: FETCH_CHARACTER,
+    chatacters
+})
+
+export const fetchChatactersError = (error) => ({
+    type: FETCH_CHARACTER_ERROR,
+    error
+})
+
+/*export const fetchCharacter = (filters, sortBy, callback) => async dispatch => {
     try {
         const res = await axios.get('/character');
         let { results } = res.data;
@@ -24,10 +41,10 @@ export const fetchCharacter = (filters, sortBy, callback) => async dispatch => {
     catch (err) {
         console.log('Could not fetch any characters. Try again later.');
     }
-}
+}*/
 
 
-const sortFunction = {
+/*const sortFunction = {
     assending: (a, b) => {
         if (a.id < b.id) return -1;
         if (a.id > b.id) return 1;
@@ -38,4 +55,4 @@ const sortFunction = {
         if (a.id < b.id) return 1;
         return 0;
     }
-};
+};*/

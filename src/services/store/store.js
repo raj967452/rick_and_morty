@@ -4,7 +4,7 @@ import rootReducer from './reducers';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-const enhancer = composeWithDevTools({ name: 'R_and_M' })(
+const enhancer = composeWithDevTools({ name: 'R_and_M', trace: true })(
   applyMiddleware(thunk)
 );
 

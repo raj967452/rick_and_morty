@@ -2,24 +2,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { updateSort } from '../../../services/sort/actions';
+import { getSortedCharacters } from '../../../services/api/charactersApi';
 import Selectbox from '../../selectbox';
 
 const sortBy = [
     { value: '', label: 'Select ID' },
-    { value: 'assending', label: 'Assending' },
-    { value: 'descending', label: 'Descending' }
+    { value: 'asc', label: 'Assending' },
+    { value: 'desc', label: 'Descending' }
 ];
 
 
 class Sort extends Component {
     static propTypes = {
-        updateSort: PropTypes.func.isRequired,
+        getSortedCharacters: PropTypes.func.isRequired,
         sort: PropTypes.string.isRequired
     }
 
     handleSort = value => {
-        this.props.updateSort(value);
+        this.props.getSortedCharacters(this.props.characters, value);
     }
 
     render() {
@@ -34,7 +34,9 @@ class Sort extends Component {
 
 
 const mapStateToProps = state => ({
-    sort: state.sort.type
+    type: state.sort.type
 });
 
-export default connect(mapStateToProps, {updateSort})(Sort);
+
+
+export default connect(mapStateToProps, {getSortedCharacters})(Sort);

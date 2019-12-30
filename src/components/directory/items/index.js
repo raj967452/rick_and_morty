@@ -9,7 +9,7 @@ const Items = props => {
                 <div className="card">
                     <div className="card_header">
                         <img src={character.image} className="card-img-top" alt={character.name} />
-                        <div class="card_Title">
+                        <div className="card_Title">
                             <h2 className="character_Name">{character.name}</h2>
                             <p className="character_Description">id: {character.id} - <Moment fromNow>{character.created}</Moment></p>
                         </div>
