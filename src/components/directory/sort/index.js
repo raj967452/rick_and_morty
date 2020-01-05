@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -6,20 +6,19 @@ import { getSortedCharacters } from '../../../services/api/charactersApi';
 import Selectbox from '../../selectbox';
 
 const sortBy = [
-    { value: '', label: 'Select ID' },
+    { value: 'none', label: 'Select ID' },
     { value: 'asc', label: 'Assending' },
     { value: 'desc', label: 'Descending' }
 ];
 
 
-class Sort extends Component {
+class Sort extends PureComponent {
     static propTypes = {
-        getSortedCharacters: PropTypes.func.isRequired,
-        sort: PropTypes.string.isRequired
-    }
+        sortData: PropTypes.array.isRequired
+    }   
 
-    handleSort = value => {
-        this.props.getSortedCharacters(this.props.characters, value);
+    handleSort = (type) => {
+        this.props.handleSortData(type);
     }
 
     render() {
@@ -31,12 +30,32 @@ class Sort extends Component {
         )
     }
 }
+const mapStateToProps = state => {
+    const { characterSuccess } = state;
+    return {
+        sortData: characterSuccess.fetchedData
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        handleSortData: (type) => dispatch(getSortedCharacters(type))
+    }
+}
+
+/*
+const doSort = (sort)=>(a,b)=>sort==="asc" ?a.name.localeCompare(b.name): b.name.localeCompare(a.name) )
+
+ render() {
+
+        const { characters, pending , filter, sort} = this.props;
+        const data = characters.filter(c=> filter.includes(c.gender)).sort(this.doSort(sort))
+        const character = data.map(char => (<Items character={char} key={char.id} />));
+
+        return (
+
+*/
 
 
-const mapStateToProps = state => ({
-    type: state.sort.type
-});
 
-
-
-export default connect(mapStateToProps, {getSortedCharacters})(Sort);
+export default connect(mapStateToProps, mapDispatchToProps)(Sort);

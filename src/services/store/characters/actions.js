@@ -1,17 +1,15 @@
 //import characterApi from '../../api/charactersApi';
 //import axios from '../api/apiCallHelper';
+import {FETCH_CHARACTER_PENDING, FETCH_CHARACTER, FETCH_CHARACTER_ERROR} from '../../constants';
 
-export const FETCH_CHARACTER = 'FETCH_CHARACTER';
-export const FETCH_CHARACTER_PENDING = 'FETCH_CHARACTER_PENDING';
-export const FETCH_CHARACTER_ERROR = 'FETCH_CHARACTER_ERROR';
 
 export const fetchChatactersPending = () => ({
     type: FETCH_CHARACTER_PENDING
 })
 
-export const fetchChatactersSuccess = (chatacters) => ({
+export const fetchChatactersSuccess = (data) => ({
     type: FETCH_CHARACTER,
-    chatacters
+    data
 })
 
 export const fetchChatactersError = (error) => ({

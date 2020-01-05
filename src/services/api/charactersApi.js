@@ -1,12 +1,12 @@
 import axios from './apiCallHelper';
 
 import { fetchChatactersSuccess, fetchChatactersPending, fetchChatactersError } from '../store/characters/actions';
-import { updateSort, sortChatactersError} from '../store/sort/actions';
+import { sortArgsForFilter, sortChatactersError} from '../store/sort/actions';
 
-export const getCharacters = () => {
+export const getCharacters = (url) => {
     return dispatch => {
         dispatch(fetchChatactersPending());
-        axios.get('/character')
+        axios.get(url)
             .then(res => {
                 if (res.error) {
                     throw (res.error);
@@ -21,32 +21,19 @@ export const getCharacters = () => {
     }
 }
 
-export const getSortedCharacters = (characterData, sortType) => {
+export const getSortedCharacters = (sortType) => {
+    //let sorted = orderByFilter(characterData, sortType);
+    console.log(sortType);
     return dispatch => {
         try {
-            dispatch(updateSort(characterData, sortType));
+            dispatch(sortArgsForFilter(sortType));
         } catch (error) {
             dispatch(sortChatactersError("error in sorting"));
         }
     }
 }
 
-/*export default {
-    getCharacters: () => {*/
-/*return dispatch => {
-    dispatch(fetchChatactersPending());
-    axios.get('/character')
-    .then(res => {
-        if(res.error) {
-            throw(res.error);
-        }
-        dispatch(fetchChatactersSuccess(res.data));
-        return res.data;
-    })
-    .catch( err => {
-        dispatch(fetchChatactersError(err));
-    })
-}*/
+/*
 /*const res = axios.get('/character');
 let { results } = res.data;
 

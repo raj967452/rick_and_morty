@@ -1,6 +1,5 @@
-import axios from '../apiCallHelper';
+import { SEARCH_CHARACTERS } from '../../constants';
 
-export const SEARCH_CHARACTERS = 'SEARCH_CHARACTERS';
 
 export const searchCharacters = searchQuery => ({
     type: SEARCH_CHARACTERS,

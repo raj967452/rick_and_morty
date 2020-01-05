@@ -1,8 +1,9 @@
 import React from 'react';
 import Moment from 'react-moment';
+import PropTypes from 'prop-types';
 
 const Items = props => {
-    const character = props.character;
+    const { character } = props;
     return (
         <React.Fragment>
             <div className="col-xs-12 col-lg-4 col-sm-6 mt-4">
@@ -27,6 +28,10 @@ const Items = props => {
             </div>
         </React.Fragment>
     )
+}
+
+Items.prototype = {
+    character: PropTypes.object.isRequired
 }
 
 export default Items;

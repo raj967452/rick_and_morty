@@ -1,5 +1,5 @@
 
-export const UPDATE_FILTERS = 'UPDATE_FILTERS';
+import { UPDATE_FILTERS } from '../../constants';
 
 export const updateFilters = filters => ({
   type: UPDATE_FILTERS,

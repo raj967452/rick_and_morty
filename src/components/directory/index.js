@@ -1,47 +1,29 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-// import { fetchCharacter } from '../../services/characters/actions';
 import { getCharacters } from '../../services/api/charactersApi';
+import { sortArgsForFilter } from '../../services/store/sort/actions';
+import { filterSelector } from '../../services/selectors/filtersSelector';
+
 import Items from './items';
 import Filters from './filters';
 import DirectoryHeader from './directoryHeader';
 import Loader from '../loader';
-
-import { orderByFilter } from '../../services/pipes/orderByFilter';
 
 import './style.scss';
 
 
 class Directory extends Component {
     static propTypes = {
-        fetchCharacter: PropTypes.func.isRequired,
-        characters: PropTypes.array.isRequired,
-        filters: PropTypes.array,
-        sort: PropTypes.string,
-        pending: PropTypes.bool.isRequired
+        fetchCharacter: PropTypes.func.isRequired
     }
     componentDidMount() {
-        this.handleFetchCharacters();
-    }
-    
-    componentWillReceiveProps(nextProps) {
-        const { filters: nextFilters, sort: nextSort } = nextProps;
-        if (nextFilters !== this.props.filters) {
-           // this.handleFetchCharacters(nextFilters, undefined);
-        }
-        if (nextSort !== this.props.sort) {
-            this.setState({
-                characters: this.props.characters
-            })
-            //this.handleFetchCharacters(undefined, nextSort);
-        }
+        this.handleFetchCharacters('/character');
     }
 
-    handleFetchCharacters = (filters = this.props.filters, sort = this.props.sort) => {
-        this.props.fetchCharacter();
+    handleFetchCharacters = (url) => {
+        this.props.fetchCharacter(url);
     }
     render() {
 
@@ -70,15 +52,18 @@ class Directory extends Component {
 
 }
 
+const mapStateToProps = state => {
+    const { characterSuccess, sortArgsForFilter } = state;
+    return {
+        characters: characterSuccess.fetchedData,
+        FilteredSortedList: filterSelector(state),
+        sortArgsForFilter
+    }
+}
 
-const mapStateToProps = state => ({
-    pending: state.characters.pending,
-    characters: state.characters.chatacters,
-    filters: state.filters.items,
-    sort: state.sort.type
-})
+const mapDispatchToProps = dispatch => ({
+    fetchCharacter: (url) => dispatch(getCharacters(url)),
+    sortArgsForFilter
+});
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-    fetchCharacter: getCharacters
-}, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(Directory);

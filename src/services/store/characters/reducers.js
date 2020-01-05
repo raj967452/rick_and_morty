@@ -1,7 +1,7 @@
-import { FETCH_CHARACTER, FETCH_CHARACTER_PENDING, FETCH_CHARACTER_ERROR } from './actions';
+import { FETCH_CHARACTER, FETCH_CHARACTER_PENDING, FETCH_CHARACTER_ERROR } from '../../constants';
 
 const initialState = {
-    chatacters: [],
+    fetchedData: [],
     pending: false,
     error: null
 };
@@ -24,7 +24,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 pending: false,
-                chatacters: action.chatacters
+                fetchedData: action.data
             }
 
         default: return state

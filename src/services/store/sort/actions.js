@@ -1,13 +1,14 @@
 
-export const UPDATE_SORT = 'UPDATE_SORT';
-export const SORT_CHARACTER_ERROR = 'SORT_CHARACTER_ERROR';
 
-export const updateSort = (characters, type) => ({
-  type: UPDATE_SORT,
-  payload:{ type: type}
+import { SORT_CHARACTER, SORT_CHARACTER_ERROR } from '../../constants';
+
+
+export const sortArgsForFilter = sortArg => ({
+  type: SORT_CHARACTER,
+  sortArg
 });
 
 export const sortChatactersError = (error) => ({
-    type: SORT_CHARACTER_ERROR,
-    error
+  type: SORT_CHARACTER_ERROR,
+  error
 })

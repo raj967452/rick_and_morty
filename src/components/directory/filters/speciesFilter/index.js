@@ -41,7 +41,7 @@ class SpeciesFilter extends Component {
     }
 }
 const mapStateToProps = state => ({
-    filters: state.filters.items
+    filters: state.filtersSuccess.items
 });
 
 

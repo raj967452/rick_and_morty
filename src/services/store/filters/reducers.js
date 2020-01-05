@@ -1,12 +1,13 @@
-import { UPDATE_FILTERS } from './actions'; 
+
+import { UPDATE_FILTERS } from '../../constants';
 
 const initialState = {
-  items: []
+    items: []
 };
 
 
-export default function(state = initialState, action) {
-    switch(action.type){
+export default function (state = initialState, action) {
+    switch (action.type) {
         case UPDATE_FILTERS: return {
             ...state,
             items: action.payload
