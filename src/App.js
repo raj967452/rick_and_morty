@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
+
 import './app.scss';
 
 import Loader from './components/loader';

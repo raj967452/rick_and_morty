@@ -2,6 +2,7 @@ import axios from './apiCallHelper';
 
 import { fetchChatactersSuccess, fetchChatactersPending, fetchChatactersError } from '../store/characters/actions';
 import { sortArgsForFilter, sortChatactersError} from '../store/sort/actions';
+import { paginatorInfoData } from '../store/paginator/actions';
 
 export const getCharacters = (url) => {
     return dispatch => {
@@ -11,8 +12,9 @@ export const getCharacters = (url) => {
                 if (res.error) {
                     throw (res.error);
                 }
-                let { results } = res.data;
+                let { results, info } = res.data;
                 dispatch(fetchChatactersSuccess(results));
+                dispatch(paginatorInfoData(info));
                 return results;
             })
             .catch(err => {
@@ -22,8 +24,6 @@ export const getCharacters = (url) => {
 }
 
 export const getSortedCharacters = (sortType) => {
-    //let sorted = orderByFilter(characterData, sortType);
-    console.log(sortType);
     return dispatch => {
         try {
             dispatch(sortArgsForFilter(sortType));

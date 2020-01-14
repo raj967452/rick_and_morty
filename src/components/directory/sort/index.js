@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { getSortedCharacters } from '../../../services/api/charactersApi';
@@ -10,17 +9,10 @@ const sortBy = [
     { value: 'asc', label: 'Assending' },
     { value: 'desc', label: 'Descending' }
 ];
-
-
 class Sort extends PureComponent {
-    static propTypes = {
-        sortData: PropTypes.array.isRequired
-    }   
-
     handleSort = (type) => {
         this.props.handleSortData(type);
     }
-
     render() {
         return (
             <div className="sort">
@@ -30,13 +22,6 @@ class Sort extends PureComponent {
         )
     }
 }
-const mapStateToProps = state => {
-    const { characterSuccess } = state;
-    return {
-        sortData: characterSuccess.fetchedData
-    }
-}
-
 const mapDispatchToProps = dispatch => {
     return {
         handleSortData: (type) => dispatch(getSortedCharacters(type))
@@ -55,7 +40,4 @@ const doSort = (sort)=>(a,b)=>sort==="asc" ?a.name.localeCompare(b.name): b.name
         return (
 
 */
-
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Sort);
+export default connect(null, mapDispatchToProps)(Sort);

@@ -1,5 +1,3 @@
-//import characterApi from '../../api/charactersApi';
-//import axios from '../api/apiCallHelper';
 import {FETCH_CHARACTER_PENDING, FETCH_CHARACTER, FETCH_CHARACTER_ERROR} from '../../constants';
 
 

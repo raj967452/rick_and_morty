@@ -9,6 +9,8 @@ import './index.scss';
 import App from './app';
 import * as serviceWorker from './serviceWorker';
 
+
+
 const store = configureStore();
 
 ReactDOM.render(
@@ -17,6 +19,7 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 );
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

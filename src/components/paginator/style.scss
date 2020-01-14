@@ -1,0 +1,29 @@
+.pagination {
+    a {
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        margin: 0 3px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 0.90rem;
+        line-height: 1.50;
+        border: 1px solid #E3E3E3;
+        cursor: pointer;
+
+        span{
+            font-size: 1.5rem;
+            line-height: .50;
+        }
+        &.jump-button{
+            width:auto;
+            height:auto;
+            border-radius: 0px;
+            border: 0 none;
+        }
+    }
+    li.disabled{
+        cursor:not-allowed;
+    }
+}

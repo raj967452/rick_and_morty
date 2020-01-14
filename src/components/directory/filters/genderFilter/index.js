@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { updateFilters } from '../../../../services/store/filters/actions';
 import Checkbox from '../../../checkbox';
 
-const Gender = ["Male", "Female", "unknown"];
+const Gender = ["Male", "Female", "Genderless", "unknown"];
 
-class GenderFilter extends Component {
+class GenderFilter extends PureComponent {
     static propTypes = {
         updateFilters: PropTypes.func.isRequired,
         filters: PropTypes.array
