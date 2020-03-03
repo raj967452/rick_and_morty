@@ -6,17 +6,17 @@ const DefaultHeader = React.lazy(() => import('./defaultHeader'));
 const DefaultBody = React.lazy(() => import('./defaultBody'));
 
 
-class DefaultLayout extends Component {    
+class DefaultLayout extends Component {
     render() {
         return (
             <div className="app">
-                <Suspense fallback={<Loader/>}>
-                    <DefaultHeader />
+                <DefaultHeader />
+                <Suspense fallback={<Loader />}>
                     <div className="container" style={{ paddingTop: '6rem' }} >
                         <DefaultBody />
                     </div>
-                    <DefaultFooter />
                 </Suspense>
+                <DefaultFooter />
             </div>
         )
     }

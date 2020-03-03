@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Sort from '../sort';
+import Filters from '../filters'
 
 const DirectoryHeader = (props) => {
     return (
@@ -10,6 +11,7 @@ const DirectoryHeader = (props) => {
                 <div className="d-flex flex-row justify-content-between">
                     <div className="mt-2">{props.charactersLength} Charater(s) found.</div>
                     <Sort />
+                    <Filters />
                 </div>
             </div>
         </React.Fragment>

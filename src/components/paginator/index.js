@@ -1,27 +1,28 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { MAX_PAGES } from '../../services/constants';
 import './style.scss';
 
 const propTypes = {
-    defaultPage: PropTypes.number
+    initialPage: PropTypes.number
 }
 const defaultProps = {
-    defaultPage: 1,
+    initialPage: 1,
     pageSize: 5
 }
-
 class Paginator extends PureComponent {
-    static propTypes = {
-        onChangePage: PropTypes.func.isRequired
-    }
     state = {
-        pager: {}
-    };
-    componentWillMount() {
+        pager: {
+            currentPage: 1,
+            pages: null
+        }
+    }; 
+    componentDidMount() {
         if (this.props.paginatorData.pages > 1) {
-            this.setPage(this.props.defaultPage);
+            let pager = this.state.pager;
+            pager = this.getPager(this.props.paginatorData.pages, this.props.initialPage);
+            // update state
+            this.setState({ pager: pager });            
         }
     }
     setPage(page) {
@@ -33,7 +34,7 @@ class Paginator extends PureComponent {
         // update state
         this.setState({ pager: pager });
         // call change page function in parent component
-        this.props.onChangePage(page);
+        this.props.fetchCharacter(`/character?page=${page}`);
     }
     getPager(totalPages, currentPage) {
         const maxPage = MAX_PAGES || 5;
@@ -72,36 +73,35 @@ class Paginator extends PureComponent {
             <nav aria-label="Page navigation">
                 <ul className="pagination justify-content-center my-4">
                     <li className={`page-item ${pager.currentPage === 1 ? 'disabled' : ''}`}>
-                        <a className="page-link jump-button" onClick={() => this.setPage(1)}>First</a>
+                        <button type="button" className="page-link jump-button" onClick={() => this.setPage(1)}>First</button>
                     </li>
                     <li className={`page-item ${pager.currentPage === 1 ? 'disabled' : ''}`}>
-                        <a className="page-link" onClick={() => this.setPage(pager.currentPage - 1)} tabIndex="-1">
+                        <button type="button" className="page-link" onClick={() => this.setPage(pager.currentPage - 1)}>
                             <span aria-hidden="true">&laquo;</span>
                             <span className="sr-only">Previous</span>
-                        </a>
+                        </button>
                     </li>
                     {pager.pages.map((page, index) =>
                         <li className={`page-item ${pager.currentPage === page ? 'active' : ''}`} key={`page_${index + 1}`}>
-                            <a className="page-link" onClick={() => this.setPage(page)}>{page}</a>
+                            <button type="button" className="page-link" onClick={() => this.setPage(page)}>{page}</button>
                         </li>
                     )}
                     <li className={`page-item ${pager.currentPage === paginatorData.pages ? 'disabled' : ''}`}>
-                        <a className="page-link" onClick={() => this.setPage(pager.currentPage + 1)} tabIndex="-1">
+                        <button type="button" className="page-link" onClick={() => this.setPage(pager.currentPage + 1)}>
                             <span aria-hidden="true">&raquo;</span>
                             <span className="sr-only">Next</span>
-                        </a>
+                        </button>
                     </li>
                     <li className={`page-item ${pager.currentPage === paginatorData.pages ? 'disabled' : ''}`}>
-                        <a className="page-link jump-button" onClick={() => this.setPage(pager.totalPages)}>Last</a>
+                        <button type="button" className="page-link jump-button" onClick={() => this.setPage(pager.totalPages)}>Last</button>
                     </li>
                 </ul>
             </nav>
         )
     }
-
 }
 
 Paginator.propTypes = propTypes;
 Paginator.defaultProps = defaultProps;
 
-export default Paginator;;
+export default Paginator;

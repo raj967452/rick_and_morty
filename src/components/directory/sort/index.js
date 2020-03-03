@@ -16,8 +16,7 @@ class Sort extends PureComponent {
     render() {
         return (
             <div className="sort">
-                Sort by
-                <Selectbox options={sortBy} handleOnChange={this.handleSort} />
+                Sort by <Selectbox options={sortBy} handleOnChange={this.handleSort} />
             </div>
         )
     }

@@ -12,6 +12,7 @@ class GenderFilter extends PureComponent {
         updateFilters: PropTypes.func.isRequired,
         filters: PropTypes.array
     };
+
     componentDidMount() {
         this.selectedFilter = new Set();
     }
@@ -39,10 +40,9 @@ class GenderFilter extends PureComponent {
         )
     }
 }
-
 const mapStateToProps = state => ({
     filters: state.filtersSuccess.items
-  });
+});
 
-  
-export default connect( mapStateToProps,{ updateFilters })(GenderFilter);
+
+export default connect(mapStateToProps, { updateFilters })(GenderFilter);
